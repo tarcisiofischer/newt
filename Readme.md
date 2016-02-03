@@ -1,5 +1,7 @@
 # newt
 
+[![Build Status](https://travis-ci.org/tarcisiofischer/newt.svg?branch=master)](https://travis-ci.org/tarcisiofischer/newt)
+
 Newt is a toy physics engine that I develop eventually. It is not a real engine
 that you will use, it is really a project where I can test and learn
 programming stuff. There may be a bit of computational geometry, a bit of
