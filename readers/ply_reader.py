@@ -11,6 +11,20 @@ def readPly(filename):
     return reader.read(filename)
 
 
+#===================================================================================================
+# PlyElement
+#===================================================================================================
+class PlyElement(object):
+    def __init__(self, element_name, element_size):
+        self.name = element_name
+        self.size = element_size
+        self.properties = []
+        self.elements = []
+
+
+#===================================================================================================
+# PlyReader
+#===================================================================================================
 class PlyReader(object):
 
     # Internal reader states
@@ -23,23 +37,41 @@ class PlyReader(object):
             self.READING_HEADER: self._read_header,
             self.READING_BODY: self._read_body,
         }
-        self._number_of_vertexes = 0
-        self._number_of_faces = 0
-        self._points = []
-        self._faces = []
+        self._elements = []
+        self._data = {}
 
 
     def _read_body(self, n, line):
-        if self._number_of_vertexes:
-            x, y, z, _, _, _ = line.split()
-            self._points.append([float(x), float(y), float(z)])
-            self._number_of_vertexes -= 1
-            return
+        if not hasattr(self, '_counter'):
+            self._counter = 0
+            self._current_element_idx = 0
 
-        if self._number_of_faces:
-            self._faces.append([int(i) for i in line.split()[1:]])
-            self._number_of_faces -= 1
-            return
+        current_element = self._elements[self._current_element_idx]
+        if not current_element.name in self._data.keys():
+            self._data[current_element.name] = {}
+
+        raw_data = line.split()
+        idx = 0
+        for property_name, property_type in current_element.properties:
+            if not property_name in self._data[current_element.name].keys():
+                self._data[current_element.name][property_name] = []
+            current_property_data = self._data[current_element.name][property_name]
+
+            if property_type == 'list':
+                list_size = int(raw_data[idx])
+                converted_data = [int(i) for i in raw_data[idx + 1:idx + 1 + list_size]]
+                current_property_data.append(converted_data)
+                idx += list_size + 1
+            else:
+                current_property_data.append(float(raw_data[idx]))
+                idx += 1
+
+
+        self._counter += 1
+        if self._counter == current_element.size:
+            self._counter = 0
+            self._current_element_idx += 1
+
 
 
     def _read_header(self, n, line):
@@ -54,13 +86,16 @@ class PlyReader(object):
             return
 
         if 'element' in line:
-            if 'vertex' in line:
-                self._number_of_vertexes = int(line.split()[-1])
-            elif 'face' in line:
-                self._number_of_faces = int(line.split()[-1])
-            else:
-                print "Unknown element " + unicode(line)
+            _, element_name, element_size = line.split()
+            self._elements.append(PlyElement(element_name, int(element_size)))
             return
+
+        if 'property' in line:
+            tokens = line.split()
+            property_name = tokens[-1]
+            property_type = tokens[1]
+            # NOTE: If property type is list, the list types are ignored.
+            self._elements[-1].properties.append((property_name, property_type))
 
         if 'end_header' in line:
             self._state = self.READING_BODY
@@ -74,4 +109,6 @@ class PlyReader(object):
                     # Ignore comment lines
                     continue
                 self._state_to_method[self._state](n, line)
-        return Polyhedron(self._points, self._faces)
+        points = zip(self._data['vertex']['x'], self._data['vertex']['y'], self._data['vertex']['z'])
+        faces = self._data['face']['vertex_indices']
+        return Polyhedron(points, faces)
