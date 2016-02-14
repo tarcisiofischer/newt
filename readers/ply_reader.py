@@ -70,5 +70,8 @@ class PlyReader(object):
     def read(self, filename):
         with open(filename, 'r') as file_contents:
             for n, line in enumerate(file_contents):
+                if 'comment' in line:
+                    # Ignore comment lines
+                    continue
                 self._state_to_method[self._state](n, line)
         return Polyhedron(self._points, self._faces)
