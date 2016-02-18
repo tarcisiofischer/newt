@@ -1,6 +1,7 @@
 import math
-
 from physics.force_generator.force_generator import ForceGenerator
+
+import numpy as np
 
 
 #===================================================================================================
@@ -58,8 +59,7 @@ class SpringForceGenerator(ForceGenerator):
         '''
         k = self.spring_constant
         d = a.position - b.position
-        # @TODO: Remember how to do it using numpy
-        md = math.sqrt(d[0] ** 2 + d[1] ** 2 + d[2] ** 2)
+        md = math.sqrt(np.sum(d ** 2))
         l0 = self.rest_length
         ud = d / md
         dl = (md - l0) * ud
