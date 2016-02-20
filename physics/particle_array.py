@@ -1,6 +1,5 @@
-import numpy as np
 from physics.particle import Particle
-
+import numpy as np
 
 
 #===============================================================================
@@ -12,7 +11,7 @@ class ParticleArray(object):
         '''
         :param float mass:
             The particle mass, in kilograms [kg].
-            
+
         :param int number_of_particles:
             The number os particles in the particle array. All particles will
             have the same mass.
@@ -28,7 +27,7 @@ class ParticleArray(object):
         '''
         Get a single particle (a view in the numpy array structures).
         The particle is READ ONLY, that is, it is not expected to be changed.
-        
+
         :param int i:
             The particle index in the array.
         '''
@@ -36,6 +35,7 @@ class ParticleArray(object):
         p.mass = self.mass
         p.velocity = self.velocity[i]
         p.position = self.position[i]
+        p.geometry._position = p.position
         return p
 
 

@@ -17,6 +17,23 @@ class Polyhedron(object):
         '''
         self._faces = faces
         self._points = points
+        self._color = np.array([0.0, 0.0, 0.0])
+        self._position = np.array([0.0, 0.0, 0.0])
+
+
+    def setColor(self, color):
+        self._color = color
+
+
+    def getColor(self):
+        return self._color
+
+
+    def scale(self, amount):
+        '''
+        :param np.array(dtype=np.float64, shape=(3,)) amount:
+        '''
+        self._points *= amount
 
 
     def move(self, amount):
@@ -87,7 +104,7 @@ class Polyhedron(object):
         '''
         :returns np.array(dtype=np.float64, shape=(n, 3)):
         '''
-        return self._points
+        return self._points + self._position
 
 
     def getPoint(self, point_id):
@@ -95,4 +112,4 @@ class Polyhedron(object):
         :param int point_id:
         :returns np.array(dtype=np.float64, shape=(3,)):
         '''
-        return self._points[point_id]
+        return self._points[point_id] + self._position

@@ -10,6 +10,7 @@ class PaintableConnector(object):
         self.obj_a = obj_a
         self.obj_b = obj_b
 
+
     def paint(self):
         glColor3f(0.0, 0.0, 0.6)
         glLineWidth(1.0);

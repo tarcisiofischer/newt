@@ -1,5 +1,5 @@
+from geometry.particle_geometry import ParticleGeometry
 import numpy as np
-
 
 
 #===============================================================================
@@ -16,6 +16,16 @@ class Particle(object):
         self.velocity = np.array([0.0, 0.0, 0.0])  # m/s
         self.position = np.array([0.0, 0.0, 0.0])  # m
         self.force_accumulator = np.array([0.0, 0.0, 0.0])
+        self.setGeometry(ParticleGeometry())
+
+
+    def setGeometry(self, geometry):
+        self.geometry = geometry
+        self.geometry._position = self.position
+
+
+    def setPosition(self, position):
+        self.position[:] = position
 
 
     def resetForceAccumulator(self):
