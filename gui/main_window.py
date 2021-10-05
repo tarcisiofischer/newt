@@ -5,11 +5,7 @@ from OpenGL.GLUT import *
 from physics.delta_t_calculators import DefaultDeltaTCalculator
 
 
-#===================================================================================================
-# MainWindow
-#===================================================================================================
 class MainWindow(object):
-
     def __init__(self, title, width, height):
         self._initWindow(title, width, height)
 
@@ -38,7 +34,6 @@ class MainWindow(object):
         gluPerspective(45.0, 1.0, 0.1, 999.0)
         glMatrixMode(GL_MODELVIEW)
 
-
     def setInputListener(self, listener):
         glutSetKeyRepeat(GLUT_KEY_REPEAT_OFF)
         glutKeyboardFunc(listener.onKeyPress)
@@ -47,31 +42,26 @@ class MainWindow(object):
         glutPassiveMotionFunc(listener.onMouseMove)
         glutMouseFunc(listener.onMouseEvent)
 
-
     def mainLoop(self):
         glutMainLoop()
 
-
     def addObject(self, paintable_object):
-        assert 'paint' in dir(paintable_object), \
-            "paintable_object must implement 'paint' method"
+        assert "paint" in dir(
+            paintable_object
+        ), "paintable_object must implement 'paint' method"
         self._paintables.append(paintable_object)
-
 
     def addBeforeDrawSceneCallback(self, callback):
         self._before_draw_scene.append(callback)
 
-
     def addAfterDrawSceneCallback(self, callback):
         self._after_draw_scene.append(callback)
-
 
     def _initWindow(self, title, width, height):
         glutInit()
         glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH)
         glutInitWindowSize(width, height)
         glutCreateWindow(title)
-
 
     def _drawScene(self):
         delta_t = self.calculateDeltaT()

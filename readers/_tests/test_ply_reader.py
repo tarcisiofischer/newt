@@ -6,22 +6,21 @@ import numpy as np
 
 
 def getTestFile(filename):
-    '''
+    """
     :param unicode filename:
-    '''
+    """
     current_path = os.path.dirname(os.path.abspath(__file__))
     return current_path + "/test_ply_reader/" + filename
 
 
 @pytest.mark.parametrize(
-    ('ply_name', 'expected_number_of_faces', 'expected_number_of_points'),
-    [
-        ('cube', 6, 24),
-        ('sphere', 840, 422),
-    ],
+    ("ply_name", "expected_number_of_faces", "expected_number_of_points"),
+    [("cube", 6, 24), ("sphere", 840, 422),],
 )
 def testReadPlyCube(ply_name, expected_number_of_faces, expected_number_of_points):
-    expected_cube_points = np.loadtxt(getTestFile("expected_" + ply_name + "_points.txt"))
+    expected_cube_points = np.loadtxt(
+        getTestFile("expected_" + ply_name + "_points.txt")
+    )
     polyhedron = readPly(getTestFile(ply_name + ".ply"))
 
     assert len(polyhedron.getFaces()) == expected_number_of_faces

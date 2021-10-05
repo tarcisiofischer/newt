@@ -13,13 +13,13 @@ import os
 def createParticle(mass, color):
     particle = Particle(mass)
     current_path = os.path.dirname(os.path.abspath(__file__))
-    particle.setGeometry(readPly(f'{current_path}/objects/sphere.ply'))
+    particle.setGeometry(readPly(f"{current_path}/objects/sphere.ply"))
     particle.geometry.scale(np.repeat(mass / 2.0, 3))
     particle.geometry.setColor(color)
     return particle
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main_window = MainWindow("Spring Example", 400, 400)
     main_window.setInputListener(GameLikeInputListener(main_window))
 

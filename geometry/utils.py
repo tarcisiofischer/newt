@@ -20,6 +20,8 @@ def hasBoundingBoxIntersection(polyhedron0, polyhedron1):
     xmin0, xmax0, ymin0, ymax0, zmin0, zmax0 = boundingBox(polyhedron0)
     xmin1, xmax1, ymin1, ymax1, zmin1, zmax1 = boundingBox(polyhedron1)
 
-    return (xmin0 < xmax1 and xmax0 > xmin1) and \
-        (ymin0 < ymax1 and ymax0 > ymin1) and \
-        (zmin0 < zmax1 and zmax0 > zmin1)
+    return (
+        (xmin0 < xmax1 and xmax0 > xmin1)
+        and (ymin0 < ymax1 and ymax0 > ymin1)
+        and (zmin0 < zmax1 and zmax0 > zmin1)
+    )

@@ -1,10 +1,6 @@
-#===================================================================================================
-# ForceGenerator
-#===================================================================================================
 class ForceGenerator(object):
-
     def update(self, obj):
-        '''
+        """
         Updates the object, applying the current force to it.
 
         :param object obj:
@@ -12,4 +8,4 @@ class ForceGenerator(object):
 
         :returns np.array(shape=(3,), dtype=np.float64):
             The generated force vector
-        '''
+        """

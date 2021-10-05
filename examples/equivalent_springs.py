@@ -11,13 +11,13 @@ import numpy as np
 # As in reality, infinite equals one million :)
 INFINITE = 1000000.0
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main_window = MainWindow("Equivalent Springs Example", 400, 400)
     main_window.setInputListener(GameLikeInputListener(main_window))
 
     simulator = PhysicsSimulator()
 
-    #===========================================================================
+    # ===========================================================================
 
     k0 = 3.5
     k1 = 0.5
@@ -51,9 +51,11 @@ if __name__ == '__main__':
     main_window.addObject(connector1_2_painter)
     particle1.setPosition(np.array([-0.5, 0.0, 5.0]))
     particle2.setPosition(np.array([-0.5, -1.0, 5.0]))
-    simulator.addForceGenerator(SpringForceGenerator(particle1, particle2, 0.6, equivalent_k))
+    simulator.addForceGenerator(
+        SpringForceGenerator(particle1, particle2, 0.6, equivalent_k)
+    )
 
-    #===========================================================================
+    # ===========================================================================
 
     k0 = 1.0
     k1 = 5.0
@@ -100,9 +102,11 @@ if __name__ == '__main__':
     particle2.setPosition(np.array([1.0, -1.0, 5.0]))
 
     # Finally, add forces
-    simulator.addForceGenerator(SpringForceGenerator(particle1, particle2, 0.8, equivalent_k))
+    simulator.addForceGenerator(
+        SpringForceGenerator(particle1, particle2, 0.8, equivalent_k)
+    )
 
-    #===========================================================================
+    # ===========================================================================
 
     main_window.addBeforeDrawSceneCallback(simulator.update)
     main_window.mainLoop()

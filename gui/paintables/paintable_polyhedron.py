@@ -2,15 +2,12 @@ from OpenGL.GL import *
 
 
 class PaintablePolyhedron(object):
-
     def __init__(self, polyhedron=None, draw_outline=False):
         self._polyhedron = polyhedron
         self._draw_outline = draw_outline
 
-
     def setPolyhedron(self, polyhedron):
         self._polyhedron = polyhedron
-
 
     def paint(self):
         for face in self._polyhedron.getFaces():

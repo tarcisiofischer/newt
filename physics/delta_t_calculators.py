@@ -1,15 +1,10 @@
 import time
 
 
-#===================================================================================================
-# DeltaTCalculator
-#===================================================================================================
 class DefaultDeltaTCalculator(object):
-
     def __init__(self):
         self._current_time = time.time()
         self._last_time = time.time()
-
 
     def __call__(self):
         self._current_time = time.time()
@@ -18,14 +13,9 @@ class DefaultDeltaTCalculator(object):
         return delta_t
 
 
-#===================================================================================================
-# DeltaTCalculator
-#===================================================================================================
 class FixedDeltaTCalculator(object):
-
     def __init__(self, delta_t=0.01):
         self._delta_t = delta_t
-
 
     def __call__(self):
         return self._delta_t
