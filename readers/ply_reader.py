@@ -1,4 +1,5 @@
 from geometry.polyhedron import Polyhedron
+import numpy as np
 
 
 def readPly(filename):
@@ -109,6 +110,6 @@ class PlyReader(object):
                     # Ignore comment lines
                     continue
                 self._state_to_method[self._state](n, line)
-        points = zip(self._data['vertex']['x'], self._data['vertex']['y'], self._data['vertex']['z'])
+        points = np.array(list(zip(self._data['vertex']['x'], self._data['vertex']['y'], self._data['vertex']['z'])))
         faces = self._data['face']['vertex_indices']
         return Polyhedron(points, faces)

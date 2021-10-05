@@ -74,7 +74,7 @@ class Polyhedron(object):
         rotation_matrix = np.dot(Rx, Ry)
         rotation_matrix = np.dot(rotation_matrix, Rz)
         # TODO: Is it possible to do this for all points at once?
-        for i in xrange(len(self._points)):
+        for i in range(len(self._points)):
             self._points[i] = np.dot(rotation_matrix, self._points[i])
         self.move(original_position)
 

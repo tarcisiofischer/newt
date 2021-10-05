@@ -18,7 +18,7 @@ class RigidBody(Polyhedron):
         '''
         Forward delta_t time (in seconds) and update the rigid body variables.
         '''
-        for i in xrange(len(self.acceleration)):
+        for i in range(len(self.acceleration)):
             self.velocity[i] += self.acceleration[i] * delta_t
             self.angular_velocity[i] += self.angular_acceleration[i] * delta_t
 

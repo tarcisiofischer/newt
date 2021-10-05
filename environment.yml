@@ -1,14 +1,11 @@
 name: newt
 
-channels:
-  - tarcisiofischer
-
 dependencies:
-  - python ==2.7.11
-  - numpy ==1.9.2
-  - pyopengl ==3.1.1a1
-  - moviepy 
-  - imageio ==1.3.0
+  - python ==3.9
+  - numpy
+  - pyopengl
+  - imageio
   - tqdm
   - scipy
-  - pil
+  - pillow
+  - pytest

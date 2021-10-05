@@ -13,7 +13,7 @@ class PaintableConnector(object):
 
     def paint(self):
         glColor3f(0.0, 0.0, 0.6)
-        glLineWidth(1.0);
+        glLineWidth(1.0)
         glBegin(GL_LINES)
         glVertex3f(*self.obj_a.position)
         glVertex3f(*self.obj_b.position)
