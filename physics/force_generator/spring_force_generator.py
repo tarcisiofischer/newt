@@ -6,33 +6,33 @@ import numpy as np
 
 class SpringForceGenerator(ForceGenerator):
     """
-        A SpringForceGenerator has two ends, one in each side of the spring, like in the
-        representation below:
+    A SpringForceGenerator has two ends, one in each side of the spring, like in the
+    representation below:
 
-        obj_a~~~~~~~~~~~obj_b
+    obj_a~~~~~~~~~~~obj_b
 
-        The two objects will be updated by this force generator.
-        The force is calculated from the hook's law:
+    The two objects will be updated by this force generator.
+    The force is calculated from the hook's law:
 
-        f = -k * dl
+    f = -k * dl
 
-        where
+    where
 
-        k = Spring constant
-        dl = The distance the spring is extended or compressed
+    k = Spring constant
+    dl = The distance the spring is extended or compressed
 
-        In 3D, dl can be written as:
+    In 3D, dl can be written as:
 
-        dl = (md - l0) * ud
+    dl = (md - l0) * ud
 
-        where
+    where
 
-        md = |d| = sqrt(x ** 2 + y ** 2 + z ** 2)  (Magnitude of d)
-        l0 = The spring's natural length. Also called "rest length".
-        ud = d / |d|  (unit-length direction of d)
-        d = xa - xb  (Position of obj_a - position of obj_b)
+    md = |d| = sqrt(x ** 2 + y ** 2 + z ** 2)  (Magnitude of d)
+    l0 = The spring's natural length. Also called "rest length".
+    ud = d / |d|  (unit-length direction of d)
+    d = xa - xb  (Position of obj_a - position of obj_b)
 
-        Reference: Game Physics Engine Development - Millington, Ian. 2007.
+    Reference: Game Physics Engine Development - Millington, Ian. 2007.
     """
 
     def __init__(self, obj_a, obj_b, rest_length, spring_constant):

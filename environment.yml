@@ -10,4 +10,5 @@ dependencies:
   - pillow
   - pytest
   - black
+  - pytest-mock
 

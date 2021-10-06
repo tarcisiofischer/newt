@@ -1,4 +1,4 @@
-class InputListener(object):
+class InputListener:
     """
     Interface for input listener
     """

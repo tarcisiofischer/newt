@@ -2,7 +2,12 @@ from physics.particle import Particle
 import numpy as np
 
 
-class ParticleArray(object):
+class ParticleArray:
+    """
+    A bunch of particles that will be calculated together.
+    This class is meant to be more performant than the single particle implementation ..see: Particle
+    """
+
     def __init__(self, mass=1e-8, number_of_particles=100):
         """
         :param float mass:

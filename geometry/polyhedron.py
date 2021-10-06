@@ -4,7 +4,7 @@ from geometry.utils import boundingBox
 import numpy as np
 
 
-class Polyhedron(object):
+class Polyhedron:
     def __init__(self, points, faces):
         """
         :param np.array(dtype=float, shape=(n,3)) points:

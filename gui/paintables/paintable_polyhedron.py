@@ -1,7 +1,7 @@
 from OpenGL.GL import *
 
 
-class PaintablePolyhedron(object):
+class PaintablePolyhedron:
     def __init__(self, polyhedron=None, draw_outline=False):
         self._polyhedron = polyhedron
         self._draw_outline = draw_outline

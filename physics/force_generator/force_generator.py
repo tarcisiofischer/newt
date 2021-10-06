@@ -1,4 +1,4 @@
-class ForceGenerator(object):
+class ForceGenerator:
     def update(self, obj):
         """
         Updates the object, applying the current force to it.

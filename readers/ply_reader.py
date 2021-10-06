@@ -12,7 +12,7 @@ def readPly(filename):
     return reader.read(filename)
 
 
-class PlyElement(object):
+class PlyElement:
     def __init__(self, element_name, element_size):
         self.name = element_name
         self.size = element_size
@@ -20,7 +20,7 @@ class PlyElement(object):
         self.elements = []
 
 
-class PlyReader(object):
+class PlyReader:
 
     # Internal reader states
     READING_HEADER = 0
@@ -71,7 +71,7 @@ class PlyReader(object):
         if n == 0:
             assert (
                 "ply" in line
-            ), "Expected ply in document's first line, but got " + unicode(line)
+            ), "Expected ply in document's first line, but got " + str(line)
             return
 
         if n == 1:

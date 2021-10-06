@@ -5,7 +5,7 @@ from OpenGL.GLUT import *
 from physics.delta_t_calculators import DefaultDeltaTCalculator
 
 
-class MainWindow(object):
+class MainWindow:
     def __init__(self, title, width, height):
         self._initWindow(title, width, height)
 

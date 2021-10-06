@@ -1,4 +1,4 @@
-class PhysicsSimulator(object):
+class PhysicsSimulator:
     def __init__(self):
         self._bodies = []
         self._force_generators = []

@@ -2,7 +2,11 @@ from geometry.particle_geometry import ParticleGeometry
 import numpy as np
 
 
-class Particle(object):
+class Particle:
+    """
+    Represents a single particle.
+    """
+
     def __init__(self, mass=1e-8):
         """
         :param float mass:

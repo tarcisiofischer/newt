@@ -11,7 +11,7 @@ from gui.input_listeners.mouse_constants import (
 )
 
 
-class RotateHelper(object):
+class RotateHelper:
     def __init__(self):
         self.xc = 200
         self.yc = 200
@@ -35,7 +35,7 @@ class RotateHelper(object):
         glutWarpPointer(self.xc, self.yc)
 
 
-class MoveHelper(object):
+class MoveHelper:
     def __init__(self):
         self._theta = 90.0
         self.moving_left = False
@@ -79,7 +79,7 @@ class MoveHelper(object):
             w.translation_z += 0.1 * math.sin(deg2rad(theta + 180.0))
 
 
-class GameLikeInputListener(object):
+class GameLikeInputListener:
     def __init__(self, main_window):
         self._main_window = main_window
         self._is_interacting = False

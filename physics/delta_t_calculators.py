@@ -1,7 +1,7 @@
 import time
 
 
-class DefaultDeltaTCalculator(object):
+class DefaultDeltaTCalculator:
     def __init__(self):
         self._current_time = time.time()
         self._last_time = time.time()
@@ -13,7 +13,7 @@ class DefaultDeltaTCalculator(object):
         return delta_t
 
 
-class FixedDeltaTCalculator(object):
+class FixedDeltaTCalculator:
     def __init__(self, delta_t=0.01):
         self._delta_t = delta_t
 
